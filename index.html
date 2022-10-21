@@ -4,17 +4,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>一些图片</title>
+    <style>
+      .main{
+        text-align: center;
+      }
+      .content_img{
+        margin: 0 10px;
+      }
+    </style>
   </head>
   <body>
-    <script src="./result.js"></script>
-    <div class="main"></div>
+    <script src="./output.js"></script>
+    <div class="main">
+      <button onclick="minus()">上10个图片</button>
+      <button onclick="add()">下10个图片</button>
+    </div>
+    <div class="content"></div>
     <script>
-      var datasrc = dataJson.messages.slice(0,10)
-      const main = document.querySelector(".main")
-      main.innerHTML =  datasrc.map(v=>{
-        return `<img width=150 src="${v.photo}"  title='${v.from}' alt='${v.from}'>`
-      })
+      window.onload =data
+      let a = 10;
+      function data(){
+        var datasrc = dataJson.slice(a-10,a)
+        const main = document.querySelector(".content")
+        main.innerHTML = (datasrc.map((item) => `<img width="150" class="content_img" src="${item.photo}">`).join(""));
+      }
+      function add() {
+        a += 10;
+        this.data()
+        console.log(a);
+      }
+      function minus() {
+        a -= 10;
+        console.log(a);
+        if(a<10){alert('第一页，无法在减去')
+        }else this.data()
+      }
     </script>
   </body>
 </html>
